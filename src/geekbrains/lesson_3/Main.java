@@ -32,7 +32,7 @@ str.charAt(0); - метод, вернет char, который стоит в с�
         int i = (int) (Math.random() * 25);//делаю рандомную переменную что бы по её номеру бралось случайное
         // слово из массива
         String randomWord = inputString[i];
-//        System.out.println(randomWord);//это строчка на раннем этапе создания посмотреть рандомно ли выбирается слово
+        System.out.println("только для отладки: " +randomWord);//это строчка на раннем этапе создания посмотреть рандомно ли выбирается слово
         doGame(randomWord);//Программой слово выбранно, теперь перейдём к вводу слова от пользователя
     }
     public static void doGame(String guessedWord){
@@ -47,20 +47,19 @@ str.charAt(0); - метод, вернет char, который стоит в с�
     }
     public static void doAdvise(String userAnswer, String compChoice){
         int hiddenWordLength = compChoice.length();// делаю переменную длинны букв загаданного слова.
-        char[] charsAnswer = userAnswer.toCharArray();// разбиваю загаданное слово на массив из его букв.
+        char[] charsAnswer = userAnswer.toCharArray();// разбиваю загаданное слово на
         // массив из его букв что-бы их сравнить по одной.
         for (int i = 0; i < hiddenWordLength; i++){
             if (i > charsAnswer.length) break;
-            charsAnswer[i] = (compChoice.charAt(i) != charsAnswer[i]) ? '#' : charsAnswer[i];
-//            if (compChoice.charAt(i) != charsAnswer[i]) charsAnswer[i] = "#";//альтернативная логика
+            charsAnswer[i] = (compChoice.charAt(i) != charsAnswer[i]) ? '#' : charsAnswer[i];//альтернативная логика
+            if (compChoice.charAt(i) != charsAnswer[i]) charsAnswer[i] = '#';
             System.out.print("если в загаданном программой слове есть буквы из указанного вами слова в том же порядке, он выведет их в консоли\r\n"
                     + Arrays.toString(charsAnswer));
         }
 //        StringBuilder comment = new StringBuilder(String.valueOf(charsAnswer));
 //        for (int i = comment.length(); i < 15; i++) comment.append("#");
 //        System.out.println(comment);
-        System.out.println("если в загаданном программой слове есть буквы из указанного вами слова в том же порядке, он выведет их в консоли\r\n"
-                + charsAnswer);
+
         doGame(compChoice);
     }
 }
